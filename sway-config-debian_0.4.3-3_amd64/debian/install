@@ -1,0 +1,8 @@
+etc/sway/* etc/sway/
+etc/swaylock/* etc/swaylock/
+usr/bin/start-sway usr/bin/
+usr/libexec/sway/* usr/libexec/sway/
+usr/share/sway/config.d/* usr/share/sway/config.d/
+usr/share/sway/config.live.d/* usr/share/sway/config.live.d/
+usr/share/sway/live/* usr/share/sway/live/
+usr/share/wayland-sessions/sway.desktop usr/share/wayland-sessions/

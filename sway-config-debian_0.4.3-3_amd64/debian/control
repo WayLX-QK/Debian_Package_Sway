@@ -1,0 +1,68 @@
+Source: sway-config-debian
+Section: x11
+Priority: optional
+Maintainer: waylx <Way2300@163.com>
+#Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 0.4.3
+Homepage: https://gitlab.com/fedora/sigs/sway/sway-config-fedora
+#Vcs-Browser: https://salsa.debian.org/debian/sway-config-debian
+#Vcs-Git: https://salsa.debian.org/debian/sway-config-debian.git
+
+Package: sway-config-debian
+Architecture: all
+Depends:
+ ${misc:Depends},
+ python3,
+ python3-dbus-next, 
+ python3-i3ipc, 
+ python3-psutil, 
+ python3-xlib, 
+ python3-tenacity,
+ procps,
+ sway (>= 1.8),
+ swaybg,
+ swayidle,
+ swaylock,
+ xwayland,
+ xdg-desktop-portal-gtk,
+ xdg-desktop-portal-wlr,
+ waybar,
+ rofi,
+ kanshi,
+ wlsunset,
+ brightnessctl (>= 0.5.1),
+ mesa-vulkan-drivers,
+ pipewire, 
+ pipewire-pulse,
+ pipewire-alsa,
+ pipewire-jack,
+ alsa-utils,
+ wireplumber,
+ pavucontrol,
+ playerctl,
+ pulseaudio-utils,
+ ffmpeg,
+ grimshot,
+ grim,
+ slurp,
+ jq,
+ wl-clipboard,
+ lxqt-policykit,
+ bluez, 
+ rfkill,
+ libnotify-bin,
+ dunst,
+ imv,
+ foot,
+ psmisc,
+ fonts-font-awesome,
+ fonts-noto-cjk,
+ fonts-cantarell
+Recommends: sway-backgrounds
+Description: Fedora Sway Spin configuration for Sway
+ This package provides the customized configuration files and wrapper scripts
+ from the Fedora Sway Spin, adapted to run on Debian systems.
+ It configures window manager rules, status bars (Waybar), input/output states,
+ keybindings for volume, screen brightness, and media control.

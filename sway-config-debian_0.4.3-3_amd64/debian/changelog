@@ -1,0 +1,7 @@
+sway-config-debian (0.4.3-1) UNRELEASED; urgency=medium
+
+  * Initial release. Repackaged from Fedora RPM to Debian package.
+  * Map RedHat dependencies to Debian equivalents.
+  * Remove redundant Fedora license paths to conform to Debian Policy.
+
+ -- waylx <Way2300@163.com>  Sun, 05 Jul 2026 17:22:11 +0800
