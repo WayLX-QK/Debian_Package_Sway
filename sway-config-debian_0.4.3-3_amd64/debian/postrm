@@ -3,17 +3,18 @@
 set -e
 
 PACKAGE="sway-config-debian"
-TARGET_FILE="/etc/sway/config"
-DIVERT_TO="/etc/sway/config.distrib"
+
+DIVERT_FILES="/etc/sway/config /usr/share/wayland-sessions/sway.desktop"
 
 remove_diversion() {
-    # 严谨检查：确认该偏转确实由本包发起
-    if dpkg-divert --list --package "$PACKAGE" --divert "$DIVERT_TO" "$TARGET_FILE" | grep -q "$PACKAGE"; then
-        echo "Removing diversion for $TARGET_FILE by $PACKAGE..."
-        # 恢复原始文件：将 .distrib 重命名回原名，并删除偏转记录
-        dpkg-divert --package "$PACKAGE" --remove --rename \
-            --divert "$DIVERT_TO" "$TARGET_FILE"
-    fi
+    for TARGET_FILE in $DIVERT_FILES; do
+        DIVERT_TO="${TARGET_FILE}.distrib"
+        if dpkg-divert --list --package "$PACKAGE" --divert "$DIVERT_TO" "$TARGET_FILE" | grep -q "$PACKAGE"; then
+            echo "Removing diversion for $TARGET_FILE by $PACKAGE..."
+            dpkg-divert --package "$PACKAGE" --remove --rename \
+                --divert "$DIVERT_TO" "$TARGET_FILE"
+        fi
+    done
 }
 
 case "$1" in

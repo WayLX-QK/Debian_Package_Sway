@@ -3,18 +3,18 @@
 set -e
 
 PACKAGE="sway-config-debian"
-TARGET_FILE="/etc/sway/config"
-DIVERT_TO="/etc/sway/config.distrib"
 
-# 定义执行偏转的函数，增强可读性
+DIVERT_FILES="/etc/sway/config /usr/share/wayland-sessions/sway.desktop"
+
 add_diversion() {
-    # 预检查：只有当系统中不存在该偏转时才执行
-    # 使用 --quiet 减少不必要的输出，使用 --list 检查状态
-    if ! dpkg-divert --list --package "$PACKAGE" --divert "$DIVERT_TO" "$TARGET_FILE" | grep -q "$PACKAGE"; then
-        echo "Adding diversion for $TARGET_FILE by $PACKAGE..."
-        dpkg-divert --package "$PACKAGE" --add --rename \
-            --divert "$DIVERT_TO" "$TARGET_FILE"
-    fi
+    for TARGET_FILE in $DIVERT_FILES; do
+        DIVERT_TO="${TARGET_FILE}.distrib"
+        if ! dpkg-divert --list --package "$PACKAGE" --divert "$DIVERT_TO" "$TARGET_FILE" | grep -q "$PACKAGE"; then
+            echo "Adding diversion for $TARGET_FILE by $PACKAGE..."
+            dpkg-divert --package "$PACKAGE" --add --rename \
+                --divert "$DIVERT_TO" "$TARGET_FILE"
+        fi
+    done
 }
 
 case "$1" in
